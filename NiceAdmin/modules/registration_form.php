@@ -1,18 +1,47 @@
+<?php
+ include "./includes/connection.php";
+
+if(isset($_POST["btn_submit"])){
+
+$fullname = $_POST['event_fullname'];
+$email = $_POST['event_email'];
+$city = $_POST['event_city'];
+
+$sql = "INSERT INTO tbl_event (full_name	, email, city)
+VALUES ('$fullname', '$email', '$city')";
+
+if ($conn->query($sql) === TRUE) {
+   echo '<script>alert("new event added");</script>';
+} else {
+  echo  "Error: " . $sql . "<br>" . $conn->error ;
+}
+
+
+}
+if(isset($_POST["btn_reset"])){
+   echo '<script>alert("reset  button is click");</script>';
+}
+
+
+$conn->close();
+?>
+
+
 <div class="card-body">
   <h5 class="card-title">Event Participation Form</h5>
 
   <!-- Floating Labels Form -->
-  <form class="row g-3">
+  <form class="row g-3" method="POST" action="index_admin.php?page=registration_form" >
     <div class="col-md-12">
       <div class="form-floating">
-        <input type="text" class="form-control" id="floatingName" placeholder="Full Name">
+        <input type="text" class="form-control" id="floatingName" placeholder="Full Name" name="event_fullname">
         <label for="floatingName">Full Name</label>
       </div>
     </div>
 
     <div class="col-md-6">
       <div class="form-floating">
-        <input type="email" class="form-control" id="floatingEmail" placeholder="Email Address">
+        <input type="email" class="form-control" id="floatingEmail" placeholder="Email Address" name="event_email">
         <label for="floatingEmail">Email Address</label>
       </div>
     </div>
@@ -34,7 +63,7 @@
     <div class="col-md-6">
       <div class="col-md-12">
         <div class="form-floating">
-          <input type="text" class="form-control" id="floatingCity" placeholder="City">
+          <input type="text" class="form-control" id="floatingCity" placeholder="City" name="event_city">
           <label for="floatingCity">City</label>
         </div>
       </div>
@@ -59,8 +88,8 @@
     </div>
 
     <div class="text-center">
-      <button type="submit" class="btn btn-primary">Submit</button>
-      <button type="reset" class="btn btn-secondary">Reset</button>
+      <button type="submit" class="btn btn-primary" name="btn_submit">Submit</button>
+      <button type="submit" class="btn btn-secondary" name="btn_reset">Reset</button>
     </div>
   </form>
   <!-- End floating Labels Form -->
