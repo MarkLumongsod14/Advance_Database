@@ -394,7 +394,7 @@
         <ul id="tables-nav" class="nav-content collapse show" data-bs-parent="#sidebar-nav">
           <li>
             <a href="index_admin.php?page=events_list">
-              <i class="bi bi-circle"></i><span>Events List</span>
+              <i class="bi bi-circle"></i><span>Event List</span>
             </a>
           </li>
           <li>
@@ -543,10 +543,9 @@
         case 'registration_form':
           include 'modules/registration_form.php';
           break;
-          case 'events_list':
+           case 'events_list':
           include 'modules/events_list.php';
           break;
-
       }
     }
     ?>
